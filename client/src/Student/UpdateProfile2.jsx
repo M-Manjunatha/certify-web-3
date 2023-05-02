@@ -20,7 +20,7 @@ import FolderIcon from "@material-ui/icons/Folder";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../utils/getWeb3";
 import ipfs from "../ipfs";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import fire from "../Fire";
 
 class UpdateProf extends Component {
@@ -190,7 +190,7 @@ class UpdateProf extends Component {
           </DialogActions>
         </Dialog>
 
-        {this.state.open ? null : <Redirect to="/CreateInstMultisig" />}
+        {this.state.open ? null : <Navigate to="/CreateInstMultisig" />}
       </div>
     );
   }

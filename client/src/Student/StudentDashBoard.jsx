@@ -11,7 +11,7 @@ import {
 import {
   Route,
   Link,
-  Switch,
+  Routes,
   BrowserRouter,
   Wrapper,
   PageWrap
@@ -369,7 +369,7 @@ class StudentDashBoard extends Component {
                   paddingTop: "70px"
                 }}
               >
-                <Switch>
+                <Routes>
                   <Route
                     path="/pendapp"
                     component={() => (
@@ -452,7 +452,7 @@ class StudentDashBoard extends Component {
                       />
                     )}
                   />
-                </Switch>
+                </Routes>
               </Grid>
 
               <Grid

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Typography, TextField, Card, Grid, Button } from "@material-ui/core";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import fire from "../Fire";
 
 class OtpI extends Component {
@@ -93,7 +93,7 @@ class OtpI extends Component {
               </Button>
             </Card>
           </Grid>
-          {this.state.r ? <Redirect to="/createinst" /> : null}
+          {this.state.r ? <Navigate to="/createinst" /> : null}
         </Grid>
       </div>
     );

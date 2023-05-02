@@ -9,7 +9,7 @@ import Card from "@material-ui/core/Card";
 import Checkbox from "@material-ui/core/Checkbox";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../utils/getWeb3";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -148,7 +148,7 @@ class MultiSigCreationStud extends Component {
             </Card>
           </Grid>
         </Grid>
-        {this.state.trig ? <Redirect to="/StudentDashBoard" /> : null}
+        {this.state.trig ? <Navigate to="/StudentDashBoard" /> : null}
       </div>
     );
   }

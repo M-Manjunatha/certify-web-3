@@ -11,7 +11,7 @@ import {
 import {
   Route,
   Link,
-  Switch,
+  Routes,
   BrowserRouter,
   Wrapper,
   PageWrap
@@ -378,7 +378,7 @@ class InstituteDashBoard extends Component {
                   padding: "15px"
                 }}
               >
-                <Switch>
+                <Routes>
                   <Route
                     path="/InstituteDashBoard/ChangeOwnershipApprovalbyInst"
                     component={() => (
@@ -436,7 +436,7 @@ class InstituteDashBoard extends Component {
                       />
                     )}
                   />
-                </Switch>
+                </Routes>
               </Grid>
               <Grid
                 item

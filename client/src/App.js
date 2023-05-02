@@ -11,7 +11,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Switch,
+  Routes as RouterRoutes,
   BrowserRouter
 } from "react-router-dom";
 import NewRequest from "./Institute/NewRequest.jsx";
@@ -52,19 +52,20 @@ class App extends Component {
   OnK = () => {};
 
   componentDidMount = async () => {
-    try {
-      fire
-        .database()
-        .ref()
-        .child("jjA")
-        .set("A");
+    // try {
+      // fire
+      //   .database()
+      //   .ref()
+      //   .child("jjA")
+      //   .set("A");
       this.OnK();
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
-
+      
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-
+      console.log("HERE 1");
+      
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = SimpleStorageContract.networks[networkId];
@@ -76,13 +77,13 @@ class App extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.runExample);
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
-    }
+    // } catch (error) {
+    //   // Catch any errors for any of the above operations.
+    //   alert(
+    //     `Failed to load web3, accounts, or contract. Check console for details.`
+    //   );
+    //   console.error("ERROR IN App.js", error);
+    // }
   };
 
   runExample = async () => {
@@ -116,7 +117,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             {" "}
-            <Switch>
+            <RouterRoutes>
               <Route
                 path="/login"
                 component={() => (
@@ -297,7 +298,7 @@ class App extends Component {
                 )}
               />{" "}
               */}{" "}
-            </Switch>{" "}
+            </RouterRoutes>{" "}
             {/* <Routes />
             <InstRoutes /> */}
           </div>

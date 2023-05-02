@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import firebase from "firebase/compat/app";
+
+// import firebase from "firebase/compat/app";
+// import firebase from "firebase";
+import { GoogleAuthProvider } from "firebase/auth";
+
 import fire from "../Fire";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { ButtonBase, Avatar, Card } from "@material-ui/core";
 
-var provider = new firebase.auth.GoogleAuthProvider();
+// var provider = new firebase.auth.GoogleAuthProvider();
 class SignUpGoogle extends Component {
   state = { open: false, red: false };
   onOpenModal = () => {
@@ -28,7 +32,7 @@ class SignUpGoogle extends Component {
     fire
 
       .auth()
-      .signInWithPopup(provider)
+      .signInWithPopup(new GoogleAuthProvider())
       .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
@@ -84,7 +88,7 @@ class SignUpGoogle extends Component {
               </Avatar>
             </ButtonBase>
             <h4>Sign in with Google !</h4>
-            {this.state.loggin ? <Redirect to="/OtpS" /> : null}
+            {this.state.loggin ? <Navigate to="/OtpS" /> : null}
           </div>
         </Card>
       </div>

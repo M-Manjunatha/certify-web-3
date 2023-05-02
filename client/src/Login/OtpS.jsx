@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Typography, TextField, Card, Grid, Button } from "@material-ui/core";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class OtpS extends Component {
   state = { r: false, o: "", random: "" };
@@ -88,7 +88,7 @@ class OtpS extends Component {
               </Button>
             </Card>
           </Grid>
-          {this.state.r ? <Redirect to="/createstud" /> : null}
+          {this.state.r ? <Navigate to="/createstud" /> : null}
         </Grid>
       </div>
     );

@@ -9,7 +9,7 @@ import Card from "@material-ui/core/Card";
 import Checkbox from "@material-ui/core/Checkbox";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../utils/getWeb3";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -84,7 +84,7 @@ class MultiSigCreationInst extends Component {
   render() {
     return (
       <div style={{ paddingTop: "50px" }}>
-        {this.state.contr ? <Redirect to="/institutedashboard" /> : null}
+        {this.state.contr ? <Navigate to="/institutedashboard" /> : null}
         <Grid container>
           <Grid item md={3} />
           <Grid item md={6}>
@@ -161,7 +161,7 @@ class MultiSigCreationInst extends Component {
             </Card>
           </Grid>
         </Grid>
-        {this.state.go ? <Redirect to="/InstituteDashBoard" /> : null}
+        {this.state.go ? <Navigate to="/InstituteDashBoard" /> : null}
       </div>
     );
   }

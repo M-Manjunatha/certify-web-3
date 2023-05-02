@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import Particles from "react-particles-js";
+import { Navigate  } from "react-router-dom";
+import Particles from "react-tsparticles";
 import { Card, Grid, Typography, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
@@ -51,8 +51,8 @@ class Login extends Component {
       //   >
       //     INSTITUTE
       //   </button>{" "}
-      //   {this.state.res ? <Redirect to="/createstud" /> : null}
-      //   {this.state.ret ? <Redirect to="/createinst" /> : null}
+      //   {this.state.res ? <Navigate  to="/createstud" /> : null}
+      //   {this.state.ret ? <Navigate  to="/createinst" /> : null}
       // </div>
 
       // <div style={{ height: "1000px", backgroundColor: "#2196f3" }}>
@@ -126,11 +126,14 @@ class Login extends Component {
       //   </Grid>
       //   <Card />
 
-      // {this.state.stud ? <Redirect to="/createstud" /> : null}
-      // {this.state.inst ? <Redirect to="/createinst" /> : null}
-      // {this.state.s ? <Redirect to="/StudentDashBoard" /> : null}
-      // {this.state.i ? <Redirect to="/InstituteDashBoard" /> : null}
+      // {this.state.stud ? <Navigate  to="/createstud" /> : null}
+      // {this.state.inst ? <Navigate  to="/createinst" /> : null}
+      // {this.state.s ? <Navigate  to="/StudentDashBoard" /> : null}
+      // {this.state.i ? <Navigate  to="/InstituteDashBoard" /> : null}
       // </div>
+
+
+
       <div style={{ height: "980px", backgroundColor: "#2196f3" }}>
         <Particles params={particleOpt} />
 
@@ -244,12 +247,12 @@ class Login extends Component {
           </Grid>
           {/* <Particles params={particleOpt} /> */}
         </div>
-        {this.state.stud ? <Redirect to="/createstud" /> : null}
-        {this.state.inst ? <Redirect to="/createinst" /> : null}
-        {this.state.stud ? <Redirect to="/GoogleLoginS" /> : null}
-        {this.state.inst ? <Redirect to="/GoogleLoginI" /> : null}
-        {this.state.s ? <Redirect to="/StudentDashBoard" /> : null}
-        {this.state.i ? <Redirect to="/InstituteDashBoard" /> : null}
+        {this.state.stud ? <Navigate  to="/createstud" /> : null}
+        {this.state.inst ? <Navigate  to="/createinst" /> : null}
+        {this.state.stud ? <Navigate  to="/GoogleLoginS" /> : null}
+        {this.state.inst ? <Navigate  to="/GoogleLoginI" /> : null}
+        {this.state.s ? <Navigate  to="/StudentDashBoard" /> : null}
+        {this.state.i ? <Navigate  to="/InstituteDashBoard" /> : null}
       </div>
     );
   }

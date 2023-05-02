@@ -11,7 +11,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackSharp from "@material-ui/icons/ArrowBackSharp";
 import SettingsPower from "@material-ui/icons/SettingsPower";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import {
   Card,
@@ -309,7 +309,7 @@ class MyProfile extends React.Component {
             </Card> */}
           </Grid>
         </Grid>
-        {this.state.ret ? <Redirect to="/StudentDashBoard" /> : null}
+        {this.state.ret ? <Navigate to="/StudentDashBoard" /> : null}
       </div>
     );
   }

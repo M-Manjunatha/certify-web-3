@@ -15,12 +15,19 @@ export default fire;
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: ""
+  apiKey: "AIzaSyCE3mvhPM2MyAdRQOJR-8kUpxTJjLy7QkA",
+  authDomain: "certify-ease.firebaseapp.com",
+  projectId: "certify-ease",
+  storageBucket: "certify-ease.appspot.com",
+  messagingSenderId: "268153182746",
+  appId: "1:268153182746:web:a4a4e563e8afdefffd4fa3",
+  databaseURL: "https://certify-ease-default-rtdb.firebaseio.com/",
+  // apiKey: "",
+  // authDomain: "",
+  // databaseURL: "",
+  // projectId: "",
+  // storageBucket: "",
+  // messagingSenderId: ""
 };
 
 const app = initializeApp(firebaseConfig);
