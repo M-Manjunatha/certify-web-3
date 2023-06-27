@@ -25,7 +25,7 @@ class MultiSigCreationStud extends Component {
     UserAdd: "",
     owner1: " ",
     owner2: " ",
-    trig: false
+    trig: false,
   };
   created = async () => {
     const { accounts, contract } = this.props;
@@ -35,6 +35,7 @@ class MultiSigCreationStud extends Component {
     await contract.methods
       .createNewMultiSigUser(this.state.InstAdd)
       .send({ from: accounts[0] });
+
     const response = await contract.methods.getOwners(accounts[0]).call();
 
     await this.setState({ owner1: response[0] });
@@ -44,7 +45,7 @@ class MultiSigCreationStud extends Component {
     this.setState({ trig: true });
   };
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({ tnc: true });
   };
 
@@ -101,7 +102,7 @@ class MultiSigCreationStud extends Component {
                     //   defaultValue="Hello World"
                     margin="normal"
                     variant="outlined"
-                    onChange={e => {
+                    onChange={(e) => {
                       this.setState({ InstAdd: e.target.value });
                       console.log(e.target.value);
                     }}

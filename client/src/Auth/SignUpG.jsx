@@ -4,7 +4,8 @@ import Button from "@material-ui/core/Button";
 
 // import firebase from "firebase/compat/app";
 // import firebase from "firebase";
-import { GoogleAuthProvider } from "firebase/auth";
+// import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import fire from "../Fire";
 import { Navigate } from "react-router-dom";
@@ -21,16 +22,44 @@ class SignUpGoogle extends Component {
     this.setState({ open: false });
   };
 
-  onRoll = e => {
+  onRoll = (e) => {
     this.setState({ rollno: e.target.value });
   };
-  onBatch = e => {
+  onBatch = (e) => {
     this.setState({ batch: e.target.value });
   };
 
-  c = e => {
-    fire
+  c = (e) => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
 
+        console.log("SUCCESS:", { credential, token, user });
+        e.setState({ loggin: true });
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log("ERROR", { errorCode, errorMessage, email, credential });
+      });
+
+    /*
+
+    fire
       .auth()
       .signInWithPopup(new GoogleAuthProvider())
       .then(function(result) {
@@ -56,6 +85,8 @@ class SignUpGoogle extends Component {
 
         // ...
       });
+
+      */
   };
 
   render() {
@@ -75,7 +106,7 @@ class SignUpGoogle extends Component {
             top: "200px",
             left: "700px",
             width: "500px",
-            height: "150px"
+            height: "150px",
           }}
         >
           <div style={{ padding: "10px" }}>

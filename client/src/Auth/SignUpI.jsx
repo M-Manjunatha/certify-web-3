@@ -3,8 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 // import firebase from "firebase/compat/app";
-import { GoogleAuthProvider } from "firebase/auth";
-
+// import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import fire from "../Fire";
 import { Navigate } from "react-router-dom";
@@ -21,24 +21,28 @@ class SignUpGoogle extends Component {
     this.setState({ open: false });
   };
 
-  onRoll = e => {
+  onRoll = (e) => {
     this.setState({ rollno: e.target.value });
   };
-  onBatch = e => {
+  onBatch = (e) => {
     this.setState({ batch: e.target.value });
   };
 
-  c = e => {
-    fire
-
-      .auth()
-      .signInWithPopup(new GoogleAuthProvider())
+  c = (e) => {
+    //fire;
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      //.auth()
+      //.signInWithPopup(new GoogleAuthProvider())
       .then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+
+        var token = credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-
+        console.log("SUCCESS:", { credential, token, user });
         e.setState({ loggin: true });
 
         console.log("This ", result.user);
@@ -68,7 +72,7 @@ class SignUpGoogle extends Component {
             top: "200px",
             left: "700px",
             width: "500px",
-            height: "150px"
+            height: "150px",
           }}
         >
           <div style={{ padding: "10px" }}>

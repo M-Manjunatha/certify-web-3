@@ -7,7 +7,7 @@ import {
   Avatar,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
@@ -33,7 +33,7 @@ class UpdateProf extends Component {
     open: true,
     profilepic: "",
     phoneno: "",
-    semail: "nik@gmail.com"
+    semail: "nik@gmail.com",
   };
 
   handleClickOpen = () => {
@@ -48,12 +48,12 @@ class UpdateProf extends Component {
     return this.state.name.length > 0 ? false : true;
   };
 
-  setName = e => {
+  setName = (e) => {
     {
       this.setState({ name: e.target.value });
     }
   };
-  setPhone = e => {
+  setPhone = (e) => {
     {
       this.setState({ phoneno: e.target.value });
     }
@@ -90,7 +90,7 @@ class UpdateProf extends Component {
     }
   };
 
-  captureFile = event => {
+  captureFile = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
     console.log(event.target.files);
@@ -104,7 +104,7 @@ class UpdateProf extends Component {
     };
   };
 
-  hj = async a => {
+  hj = async (a) => {
     await ipfs.add(a, (err, ipfsHash) => {
       console.log(err, ipfsHash);
 

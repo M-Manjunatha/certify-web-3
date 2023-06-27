@@ -12,7 +12,7 @@ import {
   Route,
   Link,
   Routes as RouterRoutes,
-  BrowserRouter
+  BrowserRouter,
 } from "react-router-dom";
 import NewRequest from "./Institute/NewRequest.jsx";
 import MyRequest from "./Student/MyRequest.jsx";
@@ -47,12 +47,12 @@ class App extends Component {
     web3: null,
     accounts: null,
     contract: null,
-    student: { pendinguploads: ["ssc", "hsc"] }
+    student: { pendinguploads: ["ssc", "hsc"] },
   };
   OnK = () => {};
 
   componentDidMount = async () => {
-    // try {
+    try {
       // fire
       //   .database()
       //   .ref()
@@ -61,11 +61,12 @@ class App extends Component {
       this.OnK();
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
-      
+      console.log("HERE 1");
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-      console.log("HERE 1");
-      
+      //console.log("HERE 1");
+      console.log({ accounts });
+
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = SimpleStorageContract.networks[networkId];
@@ -77,13 +78,14 @@ class App extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.runExample);
-    // } catch (error) {
-    //   // Catch any errors for any of the above operations.
-    //   alert(
-    //     `Failed to load web3, accounts, or contract. Check console for details.`
-    //   );
-    //   console.error("ERROR IN App.js", error);
-    // }
+    } catch (error) {
+      console.log({ error });
+      //   // Catch any errors for any of the above operations.
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
+      console.error("ERROR IN App.js", error);
+    }
   };
 
   runExample = async () => {
@@ -119,71 +121,80 @@ class App extends Component {
             {" "}
             <RouterRoutes>
               <Route
-                path="/login"
-                component={() => (
+                path="/"
+                element={
                   <Login
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
+              />{" "}
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    accounts={this.state.accounts}
+                    contract={this.state.contract}
+                  />
+                }
               />{" "}
               <Route
                 path="/CreateStudMultisig"
-                component={() => (
+                element={
                   <MultiSigCreationStud
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/GoogleLoginS"
-                component={() => (
+                element={
                   <SignUpGoogle
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/GoogleLoginI"
-                component={() => (
+                element={
                   <SignUpGoogleI
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/OtpI"
-                component={() => (
+                element={
                   <OtpI
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/OtpS"
-                component={() => (
+                element={
                   <OtpS
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/CreateInstMultisig"
-                component={() => (
+                element={
                   <MultiSigCreationInst
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               {/* <Route
                 path="/upload"
-                component={() => (
+                element={() => (
                   <Upload
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -192,7 +203,7 @@ class App extends Component {
               />{" "} */}
               <Route
                 path="/MyProfileStud"
-                component={() => (
+                element={() => (
                   <MyProfile
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -201,7 +212,7 @@ class App extends Component {
               />{" "}
               <Route
                 path="/MyProfileInst"
-                component={() => (
+                element={() => (
                   <MyInstitute
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -210,16 +221,16 @@ class App extends Component {
               />
               <Route
                 path="/createstud"
-                component={() => (
+                element={
                   <UpdateProfile
                     accounts={this.state.accounts}
                     contract={this.state.contract}
                   />
-                )}
+                }
               />
               <Route
                 path="/createinst"
-                component={() => (
+                element={() => (
                   <UpdateProf
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -228,7 +239,7 @@ class App extends Component {
               />
               <Route
                 path="/StudentDashBoard"
-                component={() => (
+                element={() => (
                   <StudentDashBoard
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -237,7 +248,7 @@ class App extends Component {
               />
               <Route
                 path="/InstituteDashBoard"
-                component={() => (
+                element={() => (
                   <InstituteDashBoard
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -246,7 +257,7 @@ class App extends Component {
               />
               <Route
                 path="/dd"
-                component={() => (
+                element={() => (
                   <Dash
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -255,7 +266,7 @@ class App extends Component {
               />
               {/* <Route
                 path="/chnageinst"
-                component={() => (
+                element={() => (
                   <ChangeInstitute
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -264,15 +275,14 @@ class App extends Component {
               />
               <Route
                 path="/instchangeapp"
-                component={() => (
+                element={() => (
                   <InstChangeApprovalbyInst
                     accounts={this.state.accounts}
                     contract={this.state.contract}
-                  /> */}
-              )} />{" "}
+                  /> */}{" "}
               {/* <Route
                 path="/new"
-                component={() => (
+                element={() => (
                   <NewRequest
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -281,7 +291,7 @@ class App extends Component {
               />{" "}
               <Route
                 path="/my"
-                component={() => (
+                element={() => (
                   <MyRequest
                     accounts={this.state.accounts}
                     contract={this.state.contract}
@@ -290,7 +300,7 @@ class App extends Component {
               />{" "}
               <Route
                 path="/myi"
-                component={() => (
+                element={() => (
                   <MyRequestInst
                     accounts={this.state.accounts}
                     contract={this.state.contract}

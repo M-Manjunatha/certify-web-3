@@ -8,7 +8,7 @@ import {
   Avatar,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
@@ -21,8 +21,10 @@ import FolderIcon from "@material-ui/icons/Folder";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../utils/getWeb3";
 import ipfs from "../ipfs";
-import { Navigate  } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import fire from "../Fire";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 class UploadPage extends Component {
   state = {
@@ -36,7 +38,7 @@ class UploadPage extends Component {
     flag: false,
     email: "",
     phoneno: "",
-    semail: "nik@gmail.com"
+    semail: "nik@gmail.com",
   };
 
   handleClickOpen = () => {
@@ -51,12 +53,12 @@ class UploadPage extends Component {
     return this.state.name.length > 0 ? false : true;
   };
 
-  setName = e => {
+  setName = (e) => {
     {
       this.setState({ name: e.target.value });
     }
   };
-  setPhone = e => {
+  setPhone = (e) => {
     {
       this.setState({ phoneno: e.target.value });
     }
@@ -66,6 +68,7 @@ class UploadPage extends Component {
 
     console.log(contract);
 
+    console.log("SEE HERE: CHECK 1");
     await contract.methods
       .updateProf(
         this.state.name,
@@ -75,7 +78,7 @@ class UploadPage extends Component {
         this.state.semail
       )
       .send({ from: accounts[0] });
-
+    console.log("SEE HERE: CHECK 2");
     const response = await contract.methods.getProfile(accounts[0]).call();
     console.log(response[0] + "updated");
     {
@@ -137,7 +140,7 @@ class UploadPage extends Component {
     }
   };
 
-  captureFile = event => {
+  captureFile = (event) => {
     this.ch();
     event.preventDefault();
     const file = event.target.files[0];
@@ -155,7 +158,7 @@ class UploadPage extends Component {
     this.setState({ flag: true });
     console.log(1, this.state.flag);
   };
-  hj = async a => {
+  hj = async (a) => {
     await ipfs.add(a, (err, ipfsHash) => {
       console.log(err, ipfsHash);
 
@@ -166,7 +169,9 @@ class UploadPage extends Component {
   };
   componentDidMount = async () => {
     console.log("idhsiod");
-    var e = fire.auth().currentUser.email;
+    const auth = getAuth();
+    console.log("CHECK THIS", auth.currentUser);
+    var e = auth.currentUser.email;
     this.setState({ email: e });
     console.log(e);
   };
@@ -243,7 +248,7 @@ class UploadPage extends Component {
           </DialogActions>
         </Dialog>
 
-        {this.state.open ? null : <Navigate  to="/CreateStudMultisig" />}
+        {this.state.open ? null : <Navigate to="/CreateStudMultisig" />}
       </div>
     );
   }

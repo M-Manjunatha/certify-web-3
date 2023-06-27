@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate  } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Particles from "react-tsparticles";
 import { Card, Grid, Typography, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -10,10 +10,10 @@ const particleOpt = {
       value: 250,
       density: {
         enable: true,
-        value_area: 800
-      }
-    }
-  }
+        value_area: 800,
+      },
+    },
+  },
 };
 class Login extends Component {
   state = { stud: false, inst: false, we: false, s: false, i: false };
@@ -132,13 +132,11 @@ class Login extends Component {
       // {this.state.i ? <Navigate  to="/InstituteDashBoard" /> : null}
       // </div>
 
-
-
       <div style={{ height: "980px", backgroundColor: "#2196f3" }}>
         <Particles params={particleOpt} />
 
-        <div style={{ position: "absolute", top: "250px", left: "225px" }}>
-          <Grid container justify="center">
+        <div style={{ position: "absolute", top: "200px", left: "100px" }}>
+          <Grid container justifyContent="center">
             <Grid item md={3}>
               <div
                 style={{ position: "absolute", marginLeft: "250px" }}
@@ -148,7 +146,7 @@ class Login extends Component {
                   style={{
                     width: "400px",
                     height: "580px",
-                    backgroundColor: "#e3f2fd"
+                    backgroundColor: "#e3f2fd",
                   }}
                 >
                   <Typography
@@ -157,16 +155,16 @@ class Login extends Component {
                   >
                     Student
                   </Typography>
-                  <Grid container justify="center">
+                  <Grid container justifyContent="center">
                     <Avatar style={{ width: "365px", height: "365px" }}>
                       <img
-                        src="https://image.flaticon.com/icons/svg/1256/1256661.svg"
+                        src="https://cdn-icons-png.flaticon.com/128/2995/2995459.png"
                         alt=""
                         style={{ height: "400px", margin: "10px" }}
                       />
                     </Avatar>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justifyContent="center">
                     <Button
                       style={{ margin: "25px" }}
                       variant="outlined"
@@ -201,7 +199,7 @@ class Login extends Component {
                   style={{
                     width: "400px",
                     height: "580px",
-                    backgroundColor: "#e3f2fd"
+                    backgroundColor: "#e3f2fd",
                   }}
                 >
                   <Typography
@@ -210,16 +208,16 @@ class Login extends Component {
                   >
                     Institute
                   </Typography>
-                  <Grid container justify="center">
+                  <Grid container justifycontent="center">
                     <Avatar style={{ width: "365px", height: "365px" }}>
                       <img
-                        src="https://image.flaticon.com/icons/svg/501/501435.svg"
+                        src="https://cdn-icons-png.flaticon.com/128/7870/7870284.png"
                         alt=""
                         style={{ height: "400px", margin: "10px" }}
                       />
                     </Avatar>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justifycontent="center">
                     <Button
                       style={{ margin: "25px" }}
                       variant="outlined"
@@ -247,12 +245,12 @@ class Login extends Component {
           </Grid>
           {/* <Particles params={particleOpt} /> */}
         </div>
-        {this.state.stud ? <Navigate  to="/createstud" /> : null}
-        {this.state.inst ? <Navigate  to="/createinst" /> : null}
-        {this.state.stud ? <Navigate  to="/GoogleLoginS" /> : null}
-        {this.state.inst ? <Navigate  to="/GoogleLoginI" /> : null}
-        {this.state.s ? <Navigate  to="/StudentDashBoard" /> : null}
-        {this.state.i ? <Navigate  to="/InstituteDashBoard" /> : null}
+        {this.state.stud ? <Navigate to="/createstud" /> : null}
+        {this.state.inst ? <Navigate to="/createinst" /> : null}
+        {this.state.stud ? <Navigate to="/GoogleLoginS" /> : null}
+        {this.state.inst ? <Navigate to="/GoogleLoginI" /> : null}
+        {this.state.s ? <Navigate to="/StudentDashBoard" /> : null}
+        {this.state.i ? <Navigate to="/InstituteDashBoard" /> : null}
       </div>
     );
   }
